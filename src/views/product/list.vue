@@ -53,26 +53,83 @@
       </a-form>
     </div>
     <!-- 操作选项 -->
-
+    <div class="table-operator">
+      <a-button type="primary" icon="plus" @click="handleAdd()">新建</a-button>
+    </div>
     <!-- 表格数据 -->
+    <a-table :columns="columns"  :data-source="data" border>
+      <span slot="tags" slot-scope="tags">
+        <a-tag
+          v-for="tag in tags"
+          :key="tag"
+          :color="tag === 'loser' ? 'volcano' : tag.length > 5 ? 'geekblue' : 'green'"
+        >
+        {{ tag.toUpperCase() }}
+      </a-tag>
+      </span>
+      <span slot="action" slot-scope="text, record">
+        <a>失效-{{ record.name }}</a>
+        <a-divider type="vertical" />
+        <a>删除</a>
+        <a-divider type="vertical" />
+        <a class="ant-dropdown-link"> 更多操作 <a-icon type="down" /> </a>
+      </span>
+    </a-table>
 
   </div>
 </template>
 
 <script>
+  const columns = [
+    {title: 'ID', dataIndex: 'key'},
+    {title: '名称', dataIndex: 'name'},
+    {title: '年龄', dataIndex: 'age'},
+    {title: '地址', dataIndex: 'address'},
+    {title: 'tags', dataIndex: 'tags', scopedSlots: { customRender: 'tags' }},
+    {title: 'Action', key: 'action', scopedSlots: { customRender: 'action' }},
+  ]
+
+
   export default {
-    name: 'productListPage',
+    name: 'ProductListPage',
     data () {
       return {
         // 高级搜索 展开/关闭
         advanced: false,
         // 查询参数
-        queryParam: {}
+        queryParam: {},
+        columns,
+        data: [
+          {
+            key: '1',
+            name: 'John Brown',
+            age: 32,
+            address: 'New York No. 1 Lake Park',
+            tags: ['nice', 'developer'],
+          },
+          {
+            key: '2',
+            name: 'Jim Green',
+            age: 42,
+            address: 'London No. 1 Lake Park',
+            tags: ['loser'],
+          },
+          {
+            key: '3',
+            name: 'Joe Black',
+            age: 32,
+            address: 'Sidney No. 1 Lake Park',
+            tags: ['cool', 'teacher'],
+          },
+        ]
       }
     },
     methods: {
-      toggleAdvanced () {
+      toggleAdvanced() {
         this.advanced = !this.advanced
+      },
+      handleAdd() {
+        this.$message.info('新建操作')
       }
     }
   }
