@@ -326,14 +326,14 @@ export const asyncRouterMap = [
       // 商品
       {
         path: '/product',
-        name: 'productPage',
+        name: 'ProductPage',
         component: PageView,
         meta: { title: '商品管理', icon: 'user', keepAlive: true },
         redirect: '/product/list',
         children: [
           {
             path: '/product/list',
-            name: 'productListPage',
+            name: 'ProductListPage',
             component: () => import('@/views/product/list'),
             meta: { title: '产品列表', icon: 'tool', keepAlive: true }
           }
