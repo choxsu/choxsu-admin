@@ -29,17 +29,20 @@ export const asyncRouterMap = [
           {
             path: 'https://www.baidu.com/',
             name: 'Monitor',
+            hidden: true,
             meta: { title: '监控页（外部）', target: '_blank' }
           },
           {
             path: 'workplace',
             name: 'Workplace',
+            hidden: true,
             component: () => import('@/views/dashboard/Workplace'),
-            meta: { title: '工作台', keepAlive: true, permission: [ 'dashboard' ] }
+            meta: { title: '工作台', keepAlive: true, permission: [ 'dashboard' ], hiddenHeaderContent: true }
           },
           {
             path: 'test-work',
             name: 'TestWork',
+            hidden: true,
             component: () => import('@/views/dashboard/TestWork'),
             meta: { title: '测试功能', keepAlive: true, permission: [ 'dashboard' ] }
           }
@@ -51,6 +54,7 @@ export const asyncRouterMap = [
         path: '/form',
         redirect: '/form/base-form',
         component: PageView,
+        hidden: true,
         meta: { title: '表单页', icon: 'form', permission: [ 'form' ] },
         children: [
           {
@@ -79,6 +83,7 @@ export const asyncRouterMap = [
         path: '/list',
         name: 'list',
         component: PageView,
+        hidden: true,
         redirect: '/list/table-list',
         meta: { title: '列表页', icon: 'table', permission: [ 'table' ] },
         children: [
@@ -136,6 +141,7 @@ export const asyncRouterMap = [
         path: '/profile',
         name: 'profile',
         component: RouteView,
+        hidden: true,
         redirect: '/profile/basic',
         meta: { title: '详情页', icon: 'profile', permission: [ 'profile' ] },
         children: [
@@ -159,6 +165,7 @@ export const asyncRouterMap = [
         path: '/result',
         name: 'result',
         component: PageView,
+        hidden: true,
         redirect: '/result/success',
         meta: { title: '结果页', icon: 'check-circle-o', permission: [ 'result' ] },
         children: [
@@ -181,6 +188,7 @@ export const asyncRouterMap = [
       {
         path: '/exception',
         name: 'exception',
+        hidden: true,
         component: RouteView,
         redirect: '/exception/403',
         meta: { title: '异常页', icon: 'warning', permission: [ 'exception' ] },
@@ -211,6 +219,7 @@ export const asyncRouterMap = [
         path: '/account',
         component: RouteView,
         redirect: '/account/center',
+        hidden: true,
         name: 'account',
         meta: { title: '个人页', icon: 'user', keepAlive: true, permission: [ 'user' ] },
         children: [
@@ -267,6 +276,7 @@ export const asyncRouterMap = [
       {
         path: '/other',
         name: 'otherPage',
+        hidden: true,
         component: PageView,
         meta: { title: '其他组件', icon: 'slack', permission: [ 'dashboard' ] },
         redirect: '/other/icon-selector',
